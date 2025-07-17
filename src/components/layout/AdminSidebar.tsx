@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import { Home, Users, BarChart2, LogOut } from 'lucide-react';
+import { Home, Users, BarChart2 } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', href: '/admin', icon: Home },
@@ -13,12 +13,6 @@ const navItems = [
 
 export default function AdminSidebar() {
   const pathname = usePathname();
-  const router = useRouter();
-
-  const handleLogout = () => {
-    localStorage.removeItem('role');
-    router.push('/login');
-  };
 
   return (
     <aside className='w-64 bg-white shadow-md p-6 flex flex-col justify-between'>
