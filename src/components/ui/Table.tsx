@@ -49,7 +49,7 @@ export default function Table({
         <table className='w-full border-separate border-spacing-0 text-sm text-gray-700'>
           <thead className='bg-gray-50 text-left text-xs uppercase tracking-wider text-gray-500'>
             <tr>
-              <th className='px-6 py-4'>#</th>
+              <th className='px-6 py-4'>ID</th>
               <th className='px-6 py-4'>Name</th>
               <th className='px-6 py-4'>Email</th>
               <th className='px-6 py-4'>Actions</th>
