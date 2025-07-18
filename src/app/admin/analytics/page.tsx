@@ -1,7 +1,7 @@
 'use client';
-import { SummaryCards } from '@/components/dashboard/SummaryCards';
-import SalesChart from '@/components/dashboard/SalesChart';
-import { AnalyticsTable } from '@/components/dashboard/AnalyticsTable';
+import { SummaryCards } from '@/components/analytics/SummaryCards';
+import SalesChart from '@/components/analytics/SalesChart';
+import { AnalyticsTable } from '@/components/analytics/AnalyticsTable';
 
 export default function AnalyticsPage() {
   return (
