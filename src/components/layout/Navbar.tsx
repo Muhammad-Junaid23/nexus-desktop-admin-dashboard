@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { LogOut, Settings, UserCircle2 } from 'lucide-react';
+import { LogOut, Settings, UserCircle2, Menu } from 'lucide-react';
 
-export default function TopNav() {
+export default function TopNav({ toggleSidebar }: { toggleSidebar: () => void }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [adminEmail, setAdminEmail] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -31,8 +31,17 @@ export default function TopNav() {
   };
 
   return (
-    <div className='w-full h-14 bg-white border-amber-100 border-l flex items-center justify-between px-4 shadow-sm sticky top-0 z-50'>
-      <h1 className='text-lg font-semibold text-gray-800'>Admin Dashboard</h1>
+    <div className='w-full h-14 bg-white flex items-center justify-between px-4 shadow-sm sticky top-0 z-50'>
+      <div className='flex items-center gap-3'>
+        <button
+          onClick={toggleSidebar}
+          className='lg:hidden text-gray-700 hover:text-gray-900 focus:outline-none'
+          aria-label='Toggle sidebar'
+        >
+          <Menu className='w-6 h-6' />
+        </button>
+        <h1 className='text-2xl font-extrabold text-blue-600'>Nexus Desktop</h1>
+      </div>
 
       <div className='flex items-center gap-4'>
         <div className='relative' ref={dropdownRef}>
