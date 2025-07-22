@@ -1,8 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { LogOut, Settings, UserCircle2, Menu } from 'lucide-react';
+import { LogOut, Settings, UserCircle2, Menu, X } from 'lucide-react';
 
-export default function TopNav({ toggleSidebar }: { toggleSidebar: () => void }) {
+interface AdminSidebarProps {
+  isOpen: boolean;
+  toggleSidebar: () => void;
+}
+
+export default function TopNav({ isOpen, toggleSidebar }: AdminSidebarProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [adminEmail, setAdminEmail] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -38,7 +43,7 @@ export default function TopNav({ toggleSidebar }: { toggleSidebar: () => void })
           className='lg:hidden text-gray-700 hover:text-gray-900 focus:outline-none'
           aria-label='Toggle sidebar'
         >
-          <Menu className='w-6 h-6' />
+          {isOpen ? <X className='w-6 h-6' /> : <Menu className='w-6 h-6' />}
         </button>
         <h1 className='text-2xl font-extrabold text-blue-600'>Nexus Desktop</h1>
       </div>

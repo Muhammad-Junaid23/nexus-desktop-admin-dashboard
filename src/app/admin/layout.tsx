@@ -23,11 +23,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     }
   }, [router]);
 
-  // Close sidebar when screen size changes to large
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        // lg breakpoint
         setSidebarOpen(false);
       }
     };
@@ -36,12 +34,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Close sidebar when clicking outside on mobile
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      // Only on mobile/tablet screens
       if (window.innerWidth < 1024 && sidebarOpen) {
-        // Check if the click is outside the sidebar area
         const target = e.target as HTMLElement;
         if (!target.closest('aside') && !target.closest('button[aria-label="Toggle sidebar"]')) {
           setSidebarOpen(false);
@@ -57,10 +52,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className='flex flex-col min-h-screen bg-gray-50'>
-      {/* Navbar at the top across all screen sizes */}
-      <Navbar toggleSidebar={toggleSidebar} />
+      <Navbar toggleSidebar={toggleSidebar} isOpen={sidebarOpen} />
 
-      {/* Main content area with sidebar */}
       <div className='flex flex-1 overflow-hidden'>
         <AdminSidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
         <main className='flex-1 overflow-y-auto p-4'>{children}</main>

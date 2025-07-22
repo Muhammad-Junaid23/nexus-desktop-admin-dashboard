@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import clsx from 'clsx';
-import { Home, Users, BarChart2, X } from 'lucide-react';
+import { Home, Users, BarChart2 } from 'lucide-react';
 
 const navItems = [
   { name: 'Home', href: '/admin', icon: Home },
@@ -29,17 +29,6 @@ export default function AdminSidebar({ isOpen, toggleSidebar }: AdminSidebarProp
       )}
     >
       <div>
-        {/* <div className='flex items-center justify-between mb-8'>
-          <h2 className='text-xl font-bold text-blue-600'>Nexus Desktop</h2>
-          <button
-            onClick={toggleSidebar}
-            className='lg:hidden text-gray-500 hover:text-gray-700 focus:outline-none'
-            aria-label='Close sidebar'
-          >
-            <X className='w-5 h-5' />
-          </button>
-        </div> */}
-
         <nav className='space-y-2'>
           {navItems.map((item) => (
             <Link
