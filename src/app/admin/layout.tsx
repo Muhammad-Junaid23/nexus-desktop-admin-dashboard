@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import AdminSidebar from '@/components/layout/AdminSidebar';
+import Sidebar from '@/components/layout/Sidebar';
 import Navbar from '@/components/layout/Navbar';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -51,11 +51,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   if (!authorized) return null;
 
   return (
-    <div className='flex flex-col min-h-screen bg-gray-50'>
+    <div className='flex flex-col min-h-screen bg-white'>
       <Navbar toggleSidebar={toggleSidebar} isOpen={sidebarOpen} />
 
       <div className='flex flex-1 overflow-hidden'>
-        <AdminSidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+        <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
         <main className='flex-1 overflow-y-auto p-4'>{children}</main>
       </div>
     </div>

@@ -56,7 +56,7 @@ export default function SalesChart() {
           <XAxis dataKey='name' />
           <YAxis />
           <Tooltip />
-          <Bar dataKey='value' fill='#155dfc' radius={[4, 4, 0, 0]} />
+          <Bar dataKey='value' fill='#00BE38' radius={[4, 4, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>
