@@ -16,13 +16,13 @@ interface AdminSidebarProps {
   toggleSidebar: () => void;
 }
 
-export default function AdminSidebar({ isOpen, toggleSidebar }: AdminSidebarProps) {
+export default function Sidebar({ isOpen, toggleSidebar }: AdminSidebarProps) {
   const pathname = usePathname();
 
   return (
     <aside
       className={clsx(
-        'h-[calc(100vh-3.5rem)] lg:h-auto lg:block z-40 bg-white shadow-md p-6 flex flex-col justify-between transition-all duration-300 ease-in-out',
+        'h-[calc(100vh-3.5rem)] lg:h-auto lg:block z-40 bg-white shadow-lg p-6 flex flex-col justify-between transition-all duration-300 ease-in-out',
         isOpen
           ? 'fixed inset-y-14 left-0 w-64 transform translate-x-0'
           : 'fixed inset-y-14 -left-64 lg:relative lg:inset-auto lg:left-0 lg:w-64'
@@ -35,8 +35,8 @@ export default function AdminSidebar({ isOpen, toggleSidebar }: AdminSidebarProp
               key={item.name}
               href={item.href}
               className={clsx(
-                'flex items-center gap-2 px-4 py-2 rounded-md hover:bg-blue-50 transition',
-                pathname === item.href ? 'bg-blue-100 text-blue-700 font-medium' : 'text-gray-700'
+                'flex items-center gap-2 px-4 py-2 rounded-md hover:bg-[#00BE38] hover:text-white transition',
+                pathname === item.href ? 'bg-[#00BE38] text-white font-medium' : 'text-gray-800'
               )}
               onClick={() => {
                 if (window.innerWidth < 1024) {
