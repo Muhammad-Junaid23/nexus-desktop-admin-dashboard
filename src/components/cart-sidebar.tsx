@@ -3,19 +3,17 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCart } from '@/contexts/cart-context';
 import { X, Plus, Minus, ShoppingBag, Receipt } from 'lucide-react';
-import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 
 export const CartSidebar = () => {
   const { state, dispatch } = useCart();
-  const [showReceipt, setShowReceipt] = useState(false);
 
   // Get the module from the query params (defaulting to "Default" if not found)
   const pathname = usePathname();
   const moduleName = pathname.split('/')[2] || 'Default';
 
   const handleCheckout = () => {
-    setShowReceipt(true);
+    alert('Checkout Successful');
   };
 
   return (

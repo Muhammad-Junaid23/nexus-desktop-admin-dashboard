@@ -1,10 +1,19 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ShoppingCart, ShoppingBag } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 import { useCart } from '@/contexts/cart-context';
 
-const navbar = () => {
+interface NavbarProps {
+  title: string;
+  description: string;
+  Icon: any;
+  iconbg1: string;
+  iconbg2: string;
+  cartIconBg: string;
+}
+
+const navbar = ({ title, description, Icon, iconbg1, iconbg2, cartIconBg }: NavbarProps) => {
   const { state, dispatch } = useCart();
 
   return (
@@ -17,12 +26,12 @@ const navbar = () => {
         <div className='flex justify-between items-center'>
           <div className='flex items-center gap-4'>
             <div className='flex items-center gap-3'>
-              <div className='w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center'>
-                <ShoppingCart className='w-6 h-6 text-white' />
+              <div className={`w-12 h-12 bg-gradient-to-br from-${iconbg1} to-${iconbg2}  rounded-xl flex items-center justify-center`}>
+                <Icon className='w-6 h-6 text-white' />
               </div>
               <div>
-                <h1 className='text-2xl font-bold text-gray-900'>Grocery</h1>
-                <p className='text-gray-600'>Fresh food and daily essentials</p>
+                <h1 className='text-2xl font-bold text-gray-900'>{title}</h1>
+                <p className='text-gray-600'>{description}</p>
               </div>
             </div>
           </div>
@@ -33,7 +42,7 @@ const navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => dispatch({ type: 'TOGGLE_CART' })}
-              className='relative bg-blue-600 text-white p-3 rounded-xl hover:bg-blue-700 transition-colors shadow-lg'
+              className={`relative ${cartIconBg}-600 text-white p-3 rounded-xl hover:${cartIconBg}-700 transition-colors shadow-lg`}
             >
               <ShoppingBag className='w-6 h-6' />
               {state.items.length > 0 && (

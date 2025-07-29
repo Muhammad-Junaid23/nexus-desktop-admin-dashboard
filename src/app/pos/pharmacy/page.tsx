@@ -2,8 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { useCart } from '@/contexts/cart-context';
-import { ProductCard } from '@/components/product-card';
+import { ProductCard } from '@/components/ProductCard';
 import { Pill, Search, Filter } from 'lucide-react';
 import { useState } from 'react';
 import Navbar from '@/components/navbar';
@@ -11,21 +10,21 @@ import Navbar from '@/components/navbar';
 const categories = ['Over-the-Counter', 'Vitamins', 'First Aid', 'Health Devices', 'Supplements'];
 
 const products = [
-  { id: 'p1', name: 'Paracetamol 500mg', price: 5.99, category: 'Over-the-Counter', qty: 15, image: 'image/pharmacy/paracetamol.jpg' },
-  { id: 'p2', name: 'Vitamin D3 Tablets', price: 12.99, category: 'Vitamins', qty: 30, image: 'image/pharmacy/vitamenD3.jpg' },
+  { id: 'p1', name: 'Paracetamol 500mg', price: 5.99, category: 'Over-the-Counter', qty: 15, image: '/image/pharmacy/paracetamol.jpg' },
+  { id: 'p2', name: 'Vitamin D3 Tablets', price: 12.99, category: 'Vitamins', qty: 30, image: '/image/pharmacy/vitamenD3.jpg' },
   {
     id: 'p3',
     name: 'Blood Pressure Monitor',
     price: 45.99,
     category: 'Health Devices',
     qty: 10,
-    image: 'image/pharmacy/blood_pressure.jpg',
+    image: '/image/pharmacy/blood_pressure.jpg',
   },
-  { id: 'p4', name: 'First Aid Kit', price: 25.99, category: 'First Aid', qty: 18, image: 'image/pharmacy/first_aid.jpg' },
-  { id: 'p5', name: 'Multivitamin Complex', price: 18.99, category: 'Vitamins', qty: 25, image: 'image/pharmacy/multivitamen.jpg' },
-  { id: 'p6', name: 'Thermometer Digital', price: 15.99, category: 'Health Devices', qty: 27, image: 'image/pharmacy/thermometer.jpg' },
-  { id: 'p7', name: 'Cough Syrup', price: 8.99, category: 'Over-the-Counter', qty: 13, image: 'image/pharmacy/coughserup.jpg' },
-  { id: 'p8', name: 'Bandages Pack', price: 6.99, category: 'First Aid', qty: 11, image: 'image/pharmacy/bandages.jpg' },
+  { id: 'p4', name: 'First Aid Kit', price: 25.99, category: 'First Aid', qty: 18, image: '/image/pharmacy/first_aid.jpg' },
+  { id: 'p5', name: 'Multivitamin Complex', price: 18.99, category: 'Vitamins', qty: 0, image: '/image/pharmacy/multivitamen.jpg' },
+  { id: 'p6', name: 'Thermometer Digital', price: 15.99, category: 'Health Devices', qty: 27, image: '/image/pharmacy/thermometer.jpg' },
+  { id: 'p7', name: 'Cough Syrup', price: 8.99, category: 'Over-the-Counter', qty: 0, image: '/image/pharmacy/coughserup.jpg' },
+  { id: 'p8', name: 'Bandages Pack', price: 6.99, category: 'First Aid', qty: 11, image: '/image/pharmacy/bandages.jpg' },
 ];
 
 export default function PharmacyDashboard() {
@@ -46,7 +45,14 @@ export default function PharmacyDashboard() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-green-50 to-blue-50'>
-      <Navbar />
+      <Navbar
+        title='Pharmacy'
+        description='Medical supplies and prescriptions'
+        Icon={Pill}
+        iconbg1='green-400'
+        iconbg2='green-900'
+        cartIconBg='bg-green'
+      />
 
       <div className='max-w-7xl mx-auto px-6 py-8'>
         <div className='grid grid-cols-1 lg:grid-cols-4 gap-8'>
@@ -114,7 +120,12 @@ export default function PharmacyDashboard() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <ProductCard {...product} module='Pharmacy' onAddToCart={() => showToast(`${product.name} added to cart`)} />
+                    <ProductCard
+                      {...product}
+                      btnBg='green'
+                      module='Pharmacy'
+                      onAddToCart={() => showToast(`${product.name} added to cart`)}
+                    />
                   </motion.div>
                 ))}
               </div>

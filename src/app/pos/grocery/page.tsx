@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { ProductCard } from '@/components/product-card';
+import { ProductCard } from '@/components/ProductCard';
 import { ShoppingCart, Search, Filter } from 'lucide-react';
 import { useState } from 'react';
 import Navbar from '@/components/navbar';
@@ -16,7 +16,7 @@ const products = [
     price: 2.99,
     category: 'Fresh Produce',
     qty: 18,
-    image: 'http://localhost:3000/public/image/grocery/banana.jpg',
+    image: '/image/grocery/banana.jpg',
   },
   {
     id: 'g2',
@@ -24,31 +24,31 @@ const products = [
     price: 1.99,
     category: 'Fresh Produce',
     qty: 11,
-    image: 'http://localhost:3000/public/image/grocery/spinach.jpg',
+    image: '/image/grocery/spinach.jpg',
   },
   {
     id: 'g3',
-    name: 'Whole Milk',
+    name: 'Milk',
     price: 3.99,
     category: 'Dairy & Eggs',
     qty: 8,
-    image: 'http://localhost:3000/public/image/grocery/milk.jpg',
+    image: '/image/grocery/milk.jpg',
   },
   {
     id: 'g4',
-    name: 'Free Range Eggs',
+    name: 'Eggs',
     price: 4.49,
     category: 'Dairy & Eggs',
     qty: 10,
-    image: 'http://localhost:3000/public/image/grocery/eggs.jpg',
+    image: '/image/grocery/eggs.jpg',
   },
   {
     id: 'g5',
-    name: 'Sourdough Bread',
+    name: 'Bread',
     price: 5.99,
     category: 'Bakery',
     qty: 19,
-    image: 'http://localhost:3000/public/image/grocery/bread.jpg',
+    image: '/image/grocery/bread.jpg',
   },
   {
     id: 'g6',
@@ -56,15 +56,15 @@ const products = [
     price: 5.99,
     category: 'Dairy & Eggs',
     qty: 15,
-    image: 'http://localhost:3000/public/image/grocery/yogurt.jpg',
+    image: '/image/grocery/yogurt.jpg',
   },
   {
     id: 'g7',
     name: 'Red Apples',
     price: 3.49,
     category: 'Fresh Produce',
-    qty: 16,
-    image: 'http://localhost:3000/public/image/grocery/apples.jpg',
+    qty: 0,
+    image: '/image/grocery/apples.jpg',
   },
   {
     id: 'g8',
@@ -72,7 +72,7 @@ const products = [
     price: 4.99,
     category: 'Beverages',
     qty: 13,
-    image: 'http://localhost:3000/public/image/grocery/orange.jpg',
+    image: '/image/grocery/orange.jpg',
   },
 ];
 
@@ -106,7 +106,14 @@ export default function GroceryDashboard() {
 
   return (
     <div className='min-h-screen bg-gradient-to-br from-blue-50 to-green-50'>
-      <Navbar />
+      <Navbar
+        title='Grocery'
+        description='Fresh food and daily essentials'
+        Icon={ShoppingCart}
+        iconbg1='blue-400'
+        iconbg2='blue-600'
+        cartIconBg='bg-blue'
+      />
 
       <div className='max-w-7xl mx-auto px-6 py-8'>
         <div className='flex flex-col lg:flex-row gap-8'>
@@ -173,7 +180,12 @@ export default function GroceryDashboard() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <ProductCard {...product} module='Grocery' onAddToCart={() => showToast(`${product.name} added to cart`)} />
+                    <ProductCard
+                      {...product}
+                      module='Grocery'
+                      btnBg='blue'
+                      onAddToCart={() => showToast(`${product.name} added to cart`)}
+                    />
                   </motion.div>
                 ))}
               </div>

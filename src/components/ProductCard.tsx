@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Plus, X } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { useCart } from '@/contexts/cart-context';
 
 interface ProductCardProps {
@@ -13,20 +13,11 @@ interface ProductCardProps {
   image?: string;
   qty?: number;
   description?: string;
+  btnBg: string;
   onAddToCart?: () => void;
 }
 
-export const ProductCard = ({
-  id,
-  name,
-  price,
-  category,
-  module,
-  image,
-  qty,
-  description,
-  onAddToCart,
-}: ProductCardProps) => {
+export const ProductCard = ({ id, name, price, category, module, image, qty, btnBg, description, onAddToCart }: ProductCardProps) => {
   const { state, dispatch } = useCart();
 
   const inCart = state.items.find((item) => item.id === id);
@@ -58,19 +49,22 @@ export const ProductCard = ({
         )}
 
         {qty === 0 && (
-          <div className='absolute inset-0 bg-black/50 text-white flex items-center justify-center text-sm font-bold'>Out of Stock</div>
+          <div className='absolute inset-0 bg-black/70 text-white flex items-center justify-center text-sm font-bold'>Out of Stock</div>
         )}
       </div>
 
       {/* Details */}
       <div className='p-3'>
-        <div className='flex items-start justify-between mb-1'>
+        <div className='flex items-center justify-between mb-1'>
           <h3 className='font-semibold text-gray-900 text-base leading-tight'>{name}</h3>
           <div className='text-xs text-gray-600'>${price.toFixed(2)}</div>
         </div>
 
-        <p className='text-xs text-gray-500 mb-1'>{category}</p>
-        {description && <p className='text-xs text-gray-600 mb-2 line-clamp-2'>{description}</p>}
+        {qty === 0 ? (
+          <p className='text-xs text-gray-600 mb-2 line-clamp-2'>Out of stock</p>
+        ) : (
+          <p className='text-xs text-gray-600 mb-2 line-clamp-2'>Qty: {qty}</p>
+        )}
 
         <div className='flex items-center justify-center'>
           <motion.button
@@ -79,17 +73,14 @@ export const ProductCard = ({
             onClick={handleClick}
             disabled={qty === 0}
             className={`w-full px-3 py-2 rounded-md font-medium flex items-center justify-center gap-1 text-sm ${
-              inCart ? 'bg-red-600 hover:bg-red-700' : 'bg-blue-600 hover:bg-blue-700'
+              inCart ? 'bg-red-600 hover:bg-red-700' : `bg-${btnBg}-600 hover:bg-${btnBg}-700`
             } text-white transition-colors`}
           >
             {inCart ? (
-              <>
-                <X className='w-3 h-3' />
-                Remove
-              </>
+              <>Remove</>
             ) : (
               <>
-                <Plus className='w-3 h-3' />
+                <Plus className='w-4 h-4' />
                 Add to Cart
               </>
             )}
